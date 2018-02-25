@@ -1,0 +1,63 @@
+This script will install the Zabbix Agent, supporting files and two crontab entries onto the vnx control station
+
+What is installed: 
+Zabbix agent to /usr/sbin
+Zabbix start up script to /etc/init.d/zabbix-agent
+Zabbix Agent config file to /usr/local/etc/zabbix_agentd.conf
+VNC monitoring script to /zabbix_operations
+data directory to /zabbix_operations/data
+temp diriectory to /zabbix_operations/tmp
+
+What is written:
+
+The collection script writes to /var/log
+The collections script writes to /zabbix_operations/data and /zabbix_operations/tmp
+
+To install the zabbix agent on the vnx control station
+and all the supporting software and settings run this script as root
+./install.sh
+
+After the install script has finished, assure a GREEN OK is displayed for the Zabbix Agent started.
+
+The Zabbix agent listens on port 10050.
+
+Assure the Zabbix monitoring server IP address is correct in the /usr/local/etc/zabbix_agentd.conf under Server=
+
+The restart the zabbix agent with: /etc/init.d/zabbix-agent restart
+
+Import the .xml vnx template into Zabbix from the zabbix_template directory
+
+Under zabbix web based GUI
+
+Import the template
+
+Craete a HOST with the IP of the vnx control station.
+
+Add the EMC vnx template to the crated host under the templates tab.
+
+Check that the agent icon is green and not red.
+
+Under MONITORING check the historical data and assure the values are populated.
+
+What vmx values can be currently monitored:
+
+ 	 	  array.vnx.api.version	14 Dec 2013 20:00:36	API_version ...	- 	History
+ 	 	  array.vnx.cpu.load	14 Dec 2013 20:00:52	1	- 	History
+ 	 	  array.vnx.disks.number	14 Dec 2013 20:00:37	num_disks ...	- 	History
+ 	 	  array.vnx.filesystem.capacity.avail	14 Dec 2013 20:00:38	0	- 	History
+ 	 	  array.vnx.filesystem.capacity.rawdiskcapacitysum	14 Dec 2013 20:00:39	43696	- 	History
+ 	 	  array.vnx.filesystem.capacity.size	14 Dec 2013 20:00:40	0	- 	History
+ 	 	  array.vnx.filesystem.capacity.used	14 Dec 2013 20:00:41	0	- 	History
+ 	 	  array.vnx.inventory	14 Dec 2013 20:00:37	Component ...	- 	History
+ 	 	  array.vnx.license.list	14 Dec 2013 20:00:49	key ...	- 	History
+ 	 	  array.vnx.microcode.level	14 Dec 2013 20:00:42	microcode_version ...	- 	History
+ 	 	  array.vnx.model.number	14 Dec 2013 20:00:43	model_num ...	- 	History
+ 	 	  array.vnx.movers.failed	14 Dec 2013 20:00:55	0	- 	History
+ 	 	  array.vnx.name	14 Dec 2013 20:00:44	arrayname ...	- 	History
+ 	 	  array.vnx.network.name	14 Dec 2013 20:00:45	network_name ...	- 	History
+ 	 	  array.vnx.physical.memory.megabytes	14 Dec 2013 20:00:46	phys_memory ...	- 	History
+ 	 	  array.vnx.physical.raid.level	14 Dec 2013 20:00:47	raid_type ...	- 	History
+ 	 	  array.vnx.serial.number	14 Dec 2013 20:00:48	serial_num ...	- 	History
+ 	 	  array.vnx.server.version	14 Dec 2013 20:00:46	server_2 : Product: ...	- 	History
+ 	 	  array.vnx.storagegroups.count	14 Dec 2013 20:00:49	num_storage_grps ...	- 	History
+ 	 	  vnxtime	14 Dec 2013 20:00:50
